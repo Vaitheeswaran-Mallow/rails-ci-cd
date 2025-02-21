@@ -300,7 +300,7 @@ DEPENDENCIES
   bundler-audit
   capybara
   debug
-  error_highlight (= 0.7.0)
+  error_highlight
   importmap-rails
   jbuilder
   pg (~> 1.1)
