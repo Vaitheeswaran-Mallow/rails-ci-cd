@@ -1,0 +1,19 @@
+name: Enforce PR Checklist
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  checklist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR body for checklist completion
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const body = context.payload.pull_request.body;
+            const incomplete = body.match(/- \[ \]/g);
+            if (incomplete) {
+              core.setFailed(`Checklist incomplete: ${incomplete.length} item(s) left.`);
+            }
